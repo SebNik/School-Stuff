@@ -7,9 +7,9 @@ min_range = 0
 max_range = np.pi * 4
 
 # amplitude
-amplitude = 1
+amplitude = 0.6
 # periode
-periode = 2 * np.pi
+periode = np.pi*4
 
 # f(x) = a*sin(b*x)+c 
 a = amplitude  # changing the amplitude
@@ -18,8 +18,8 @@ c = 0  # changing the x-axis-intersecting-point
 d = 0  # changing the y-axis-intersecting-point
 
 # setting the x - coordinates 
-x_1 = np.arange(min_range, max_range, 0.25)
-x_2 = np.arange(min_range, max_range, 0.25)
+x_1 = np.arange(min_range, max_range, 0.1)
+x_2 = np.arange(min_range, max_range, 0.1)
 
 # setting the corresponding y - coordinates 
 y_1 = a * np.sin(b * x_1 + c) + d
@@ -52,7 +52,7 @@ plt.title('Ploter')
 # w: white
 # plt.stem(x_1,y_1, 'b')
 plt.axhline(y=0, marker='o', color='w')
-plt.plot(x_1, y_1, label='y={}sin({}+x)+{}'.format(a, b, c), marker='o', color='b')
+plt.plot(x_1, y_1, label='y={}sin({}x)+{}'.format(a, b, c), marker='o', color='b')
 plt.plot(x_2, y_2, label='y=sin(x)', marker='o', color='y')
 
 # shows the grid
