@@ -1,28 +1,39 @@
 import numpy as np
 import matplotlib.pyplot as plt
+import datetime
+import os
 
 fig = plt.figure()
 ax = plt.axes(projection='3d')
 
+#configs for animation
+max_angle_y=180
+max_angle_z=[20,40,75]
+
+# path of pictures
+path='/home/niklas/Desktop/School-Stuff/Data/3d-plotter-simple-data/'
+folder=str(datetime.datetime.now())
+
+# create folder for today
+os.mkdir(path+folder)
+
 # Data for a three-dimensional line
 zline = np.linspace(0, 15, 1000)
-xline = np.sin(zline)
-yline = np.cos(zline)
+xline = [5]*1000
+yline = [4]*1000
 ax.plot(xline, yline, zline, 'b')
 
-# Data for three-dimensional scattered points
-#zdata = 15 * np.random.random(100)
-#xdata = np.sin(zdata) + 0.1 * np.random.randn(100)
-#ydata = np.cos(zdata) + 0.1 * np.random.randn(100)
-#ax.scatter3D(xdata, ydata, zdata, c=zdata, cmap='Greens')
-for angle in range(0, 360):
-    ax.view_init(30, angle)
-    plt.draw()
-    plt.pause(.001)
-#ax.view_init(elev=10., azim=10)
-# plt.savefig("movie%d.png" % 10)
-#ax.view_init(elev=10., azim=80)
-#plt.show()
+#animation for pictures
+for angle2 in max_angle_z:
+    last_angle=0
+    for angle in range(0, max_angle_y):
+        if last_angle!=angle2:
+            file='pic'+str(angle2)+str(angle)
+            plt.savefig(path + folder + '/' + file)
+        ax.view_init(angle2, angle)
+        plt.draw()
+        plt.pause(.01)
+        last_angle==angle2
 #----------------------------------------------------------------------------------------
 # from matplotlib import pyplot as plt
 # import numpy as np

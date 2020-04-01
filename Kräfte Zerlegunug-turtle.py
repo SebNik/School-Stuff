@@ -85,4 +85,5 @@ def draw_forces(alpha, f1, f2, speed=1):
     print('Die resultierende Kraft ist:', cal_res_Kraft(alpha, f1, f2))
 
 
-draw_forces(80, 5, 15, 1)
+#draw_forces(80, 5, 15, 1)
+print(cal_res_Kraft(160, 3.0, 3.6))
