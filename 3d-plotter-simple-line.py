@@ -3,24 +3,34 @@ import matplotlib.pyplot as plt
 import datetime
 import os
 
-def plot_surface_cube(x,y,z,a=0.5):
-    X=(0,x)
-    Y=(0,y)
+
+def plot_surface_cube(x, y, z, a=0.5):
+    X = (0, x)
+    Y = (0, y)
     X, Y = np.meshgrid(X, Y)
     one = np.zeros(4).reshape(2, 2)
-    one = one+z
-    ax.plot_surface(X,Y,one, alpha=0.3)
-    ax.plot_wireframe(X,Y,-one, alpha=0.5)
-    ax.plot_wireframe(X,-one,Y, alpha=0.5)
+    one = one + z
+    ax.plot_surface(X, Y, one, alpha=0.3)
+    ax.plot_wireframe(X, Y, -one, alpha=0.5)
+    ax.plot_wireframe(X, -one, Y, alpha=0.5)
 
-def plot_line(x,y,z,a=0.5):
-    # Data for a three-dimensional line
-    zline = np.linspace(0, 2, 1000)
-    xline = [0] * 1000
-    yline = [0] * 1000
-    #ax.plot(xline, yline, zline, 'b')
 
-def animation(max_angle_z,max_angle_y,path,folder,state=True):
+def plot_line(p, u, a=0.5, n=100):
+    # 3d plotting a line with the equation g: x=p+u*t where p and u are vectors
+    data = []
+    p_vector = np.array(p)
+    u_vector = np.array(u)
+    for t in range(0, n):
+        t = t * 0.1
+        line = (p_vector + u_vector * t)
+        data.append(line)
+        print(t, p_vector + u_vector * t)
+    d = np.array(data)
+    print(d[:, 0])
+    # ax.plot(xline, yline, zline, 'b')
+
+
+def animation(max_angle_z, max_angle_y, path, folder, state=True):
     # animation for pictures
     for angle2 in max_angle_z:
         last_angle = 0
@@ -32,6 +42,7 @@ def animation(max_angle_z,max_angle_y,path,folder,state=True):
             plt.draw()
             plt.pause(.01)
             last_angle = angle2
+
 
 fig = plt.figure()
 ax = plt.axes(projection='3d')
@@ -52,5 +63,5 @@ ax.set_xlabel('X')
 ax.set_ylabel('Y')
 ax.set_zlabel('Z')
 
-plot_surface_cube(2,3,4)
+plot_line(p=[1, 2, 3], u=[1, 2, 3])
 plt.show()
