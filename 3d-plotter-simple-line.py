@@ -24,10 +24,10 @@ def plot_line(p, u, a=0.5, n=100):
         t = t * 0.1
         line = (p_vector + u_vector * t)
         data.append(line)
-        print(t, p_vector + u_vector * t)
+        # print(t, p_vector + u_vector * t)
     d = np.array(data)
-    print(d[:, 0])
-    # ax.plot(xline, yline, zline, 'b')
+    # print(d[:, 0])
+    ax.plot(d[:, 0], d[:, 1], d[:, 2], 'b')
 
 
 def animation(max_angle_z, max_angle_y, path, folder, state=True):
@@ -64,4 +64,5 @@ ax.set_ylabel('Y')
 ax.set_zlabel('Z')
 
 plot_line(p=[1, 2, 3], u=[1, 2, 3])
+animation(max_angle_y=max_angle_y,max_angle_z=max_angle_z,path=path,folder=folder)
 plt.show()
