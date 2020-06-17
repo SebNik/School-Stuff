@@ -15,16 +15,15 @@ def plot_surface_cube(x, y, z, a=0.5):
     ax.plot_wireframe(X, -one, Y, alpha=0.5)
 
 
-def plot_line(p, u, a=0.5, n=100):
+def plot_line(p, u, a=0.5, n=5):
     # 3d plotting a line with the equation g: x=p+u*t where p and u are vectors
     data = []
     p_vector = np.array(p)
     u_vector = np.array(u)
-    for t in range(0, n):
-        t = t * 0.1
-        line = (p_vector + u_vector * t)
-        data.append(line)
-        # print(t, p_vector + u_vector * t)
+    line = (p_vector + u_vector * 0)
+    data.append(line)
+    line = (p_vector + u_vector *n)
+    # print(t, p_vector + u_vector * 0)
     d = np.array(data)
     # print(d[:, 0])
     ax.plot(d[:, 0], d[:, 1], d[:, 2], 'b')
