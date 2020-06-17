@@ -40,7 +40,7 @@ def animation(max_angle_z, max_angle_y, path, folder, state=True):
                 plt.savefig(path + folder + '/' + file)
             ax.view_init(angle2, angle)
             plt.draw()
-            plt.pause(.01)
+            plt.pause(.001)
             last_angle = angle2
 
 
@@ -49,7 +49,7 @@ ax = plt.axes(projection='3d')
 
 # configs for animation
 max_angle_y = 180
-max_angle_z = [90]
+max_angle_z = [50, 10]
 
 # path of pictures
 path = '/home/niklas/Desktop/School-Stuff/Data/3d-plotter-simple-data/'
@@ -64,5 +64,5 @@ ax.set_ylabel('Y')
 ax.set_zlabel('Z')
 
 plot_line(p=[1, 2, 3], u=[1, 2, 3])
-animation(max_angle_y=max_angle_y,max_angle_z=max_angle_z,path=path,folder=folder)
+animation(max_angle_y=max_angle_y, max_angle_z=max_angle_z, path=path, folder=folder)
 plt.show()
