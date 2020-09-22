@@ -22,7 +22,11 @@ def force_earth_globe(n, dr, m_s, rho, dphi, k_):
         sum_f += F
         sum_m += m_r
     # returning values
-    return sum_f, sum_m
+    return sum_f, sum_m, r
+
+
+def force_earth_point(m, r, m_s):
+    return G * (m * m_s / (r ** 2))
 
 
 if __name__ == "__main__":
@@ -32,6 +36,22 @@ if __name__ == "__main__":
     # Rho = 5510
     Rho = 3000
     DPhi = pi / n_steps
-    k = 1.1
+    n_samples = 8
+    # samples of range
+    k_samples = sorted([random.random() * 2 for n in range(n_samples)])
     # collecting samples
-    print(force_earth_globe(n=n_steps, dr=DR, m_s=m_stein, rho=Rho, dphi=DPhi, k_=k))
+    data_globe = []
+    data_point = []
+    for k in k_samples:
+        f, m, r = force_earth_globe(n=n_steps, dr=DR, m_s=m_stein, rho=Rho, dphi=DPhi, k_=k)
+        data_globe.append(f)
+        f = force_earth_point(m=m, m_s=m_stein, r=r)
+        data_point.append(f)
+    # printing data
+    plt.plot(k_samples, data_globe, c='red', linestyle='-', marker='o', label='Globe-Data')
+    plt.plot(k_samples, data_point, c='blue', linestyle='-', marker='o', label='Point-Data')
+    # showing plot
+    plt.xlabel('k')
+    plt.ylabel('Force')
+    plt.legend()
+    plt.show()
