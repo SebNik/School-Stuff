@@ -80,6 +80,5 @@ if __name__ == "__main__":
     plt.ticklabel_format(useOffset=False, style='plain')
     fig = plt.gcf()
     fig.set_size_inches(12.5, 8.5)
-
-    plt.savefig('single_plots.png')
+    plt.savefig('single_plots.png', dpi=100)
     plt.show()
