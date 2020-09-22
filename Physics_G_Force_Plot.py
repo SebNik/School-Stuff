@@ -65,7 +65,8 @@ if __name__ == "__main__":
     ax2.grid(color='slategray', linestyle='--', linewidth=1)
     ax1.ticklabel_format(useOffset=False, style='plain')
     ax2.ticklabel_format(useOffset=False, style='plain')
-    fig.savefig('both_plots.png')
+    fig.set_size_inches(12.5, 8.5)
+    fig.savefig('both_plots.png', dpi=100)
     plt.show()
     # -----------------------------------------------------------
     plt.title('Physics Both Graph Plot Forces', fontsize=18)
@@ -77,5 +78,8 @@ if __name__ == "__main__":
     plt.legend()
     plt.grid(color='slategray', linestyle='--', linewidth=1)
     plt.ticklabel_format(useOffset=False, style='plain')
+    fig = plt.gcf()
+    fig.set_size_inches(12.5, 8.5)
+
     plt.savefig('single_plots.png')
     plt.show()
