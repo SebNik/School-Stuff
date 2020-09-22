@@ -18,7 +18,7 @@ def force_earth_globe(n, dr, m_s, rho, dphi, k_):
         r = math.sqrt(a ** 2 + r_r ** 2)
         V_r = pi * 2 * r_r * dphi * dr
         m_r = V_r * rho
-        F = G * m_s * m_r * a * (r ** 3)
+        F = G * m_s * m_r * r * (a ** 3)
         sum_f += F
         sum_m += m_r
     # returning values
@@ -48,10 +48,20 @@ if __name__ == "__main__":
         f = force_earth_point(m=m, m_s=m_stein, r=r)
         data_point.append(f)
     # printing data
-    plt.plot(k_samples, data_globe, c='red', linestyle='-', marker='o', label='Globe-Data')
-    plt.plot(k_samples, data_point, c='blue', linestyle='-', marker='o', label='Point-Data')
+    fig, (ax1, ax2) = plt.subplots(2)
+    fig.suptitle('Physics Graph Plot Forces', fontsize=18)
+    ax1.plot(k_samples, data_globe, c='red', linestyle='-', marker='o', label='Globe-Data')
+    ax2.plot(k_samples, data_point, c='blue', linestyle='-', marker='o', label='Point-Data')
     # showing plot
-    plt.xlabel('k')
-    plt.ylabel('Force')
-    plt.legend()
+    # ax1.set_title('Globe Data', fontsize=12, fontweight='bold')
+    # ax2.set_title('Point Data', fontsize=12, fontweight='bold')
+    ax1.set_xlabel('k', fontsize=10, fontstyle='oblique', fontweight='bold')
+    ax1.set_ylabel('Force', fontsize=10, fontstyle='oblique', fontweight='bold')
+    ax2.set_xlabel('k', fontsize=10, fontstyle='oblique', fontweight='bold')
+    ax2.set_ylabel('Force', fontsize=10, fontstyle='oblique', fontweight='bold')
+    ax1.legend()
+    ax1.grid(color='slategray', linestyle='--', linewidth=1)
+    ax2.legend()
+    ax2.grid(color='slategray', linestyle='--', linewidth=1)
     plt.show()
+    fig.savefig('test.png')
