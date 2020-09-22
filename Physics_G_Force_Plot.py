@@ -36,7 +36,7 @@ if __name__ == "__main__":
     # Rho = 5510
     Rho = 3000
     DPhi = pi / n_steps
-    n_samples = 100
+    n_samples = 50
     # samples of range
     k_samples = sorted([random.random() * 2 for n in range(n_samples)])
     # collecting samples
@@ -65,5 +65,17 @@ if __name__ == "__main__":
     ax2.grid(color='slategray', linestyle='--', linewidth=1)
     ax1.ticklabel_format(useOffset=False, style='plain')
     ax2.ticklabel_format(useOffset=False, style='plain')
-    fig.savefig('test.png')
+    fig.savefig('both_plots.png')
+    plt.show()
+    # -----------------------------------------------------------
+    plt.title('Physics Both Graph Plot Forces', fontsize=18)
+    plt.plot(k_samples, data_globe, c='red', linestyle='-', marker='o', label='Globe-Data')
+    plt.plot(k_samples, data_point, c='blue', linestyle='-', marker='o', label='Point-Data')
+    # showing plot
+    plt.xlabel('k', fontsize=10, fontstyle='oblique', fontweight='bold')
+    plt.ylabel('Force', fontsize=10, fontstyle='oblique', fontweight='bold')
+    plt.legend()
+    plt.grid(color='slategray', linestyle='--', linewidth=1)
+    plt.ticklabel_format(useOffset=False, style='plain')
+    plt.savefig('single_plots.png')
     plt.show()
