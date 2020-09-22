@@ -18,7 +18,7 @@ def force_earth_globe(n, dr, m_s, rho, dphi, k_):
         r = math.sqrt(a ** 2 + r_r ** 2)
         V_r = pi * 2 * r_r * dphi * dr
         m_r = V_r * rho
-        F = G * m_s * m_r * r * (a ** 3)
+        F = (G * m_s * m_r * a) / (r ** 3)
         sum_f += F
         sum_m += m_r
     # returning values
@@ -30,13 +30,13 @@ def force_earth_point(m, r, m_s):
 
 
 if __name__ == "__main__":
-    n_steps = 100
+    n_steps = 500
     DR = 0.1
     m_stein = 1
     # Rho = 5510
     Rho = 3000
     DPhi = pi / n_steps
-    n_samples = 8
+    n_samples = 100
     # samples of range
     k_samples = sorted([random.random() * 2 for n in range(n_samples)])
     # collecting samples
@@ -63,5 +63,7 @@ if __name__ == "__main__":
     ax1.grid(color='slategray', linestyle='--', linewidth=1)
     ax2.legend()
     ax2.grid(color='slategray', linestyle='--', linewidth=1)
-    plt.show()
+    ax1.ticklabel_format(useOffset=False, style='plain')
+    ax2.ticklabel_format(useOffset=False, style='plain')
     fig.savefig('test.png')
+    plt.show()
